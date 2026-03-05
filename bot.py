@@ -58,11 +58,14 @@ def tweet_result(match):
 
 
 def main():
-
+    print("BOT START")
+    
     for team in config.TEAMS:
 
         try:
+            print("Checking team:", team)
             match = get_last_match(team)
+            print("Match data:", match)
             tweet_result(match)
 
         except:
