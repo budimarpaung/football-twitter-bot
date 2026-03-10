@@ -17,8 +17,8 @@ TEAMS = [
 "Real Madrid",
 "Barcelona",
 "Juventus",
-"Inter",
-"Milan",
+"Inter Milan",
+"AC Milan",
 "Bayern Munich",
-"Paris SG"
+"Paris Saint-Germain"
 ]
