@@ -4,15 +4,24 @@ import tweepy
 import config
 
 def get_last_match(team):
+
     url = f"{config.SPORTSDB_API}searchteams.php?t={team}"
     r = requests.get(url).json()
+
+    if not r["teams"]:
+        print("Team not found:", team)
+        return None
 
     team_id = r["teams"][0]["idTeam"]
 
     url2 = f"{config.SPORTSDB_API}eventslast.php?id={team_id}"
-    match = requests.get(url2).json()["results"][0]
+    data = requests.get(url2).json()
 
-    return match
+    if not data["results"]:
+        print("No match found for", team)
+        return None
+
+    return data["results"][0]
 
 
 def create_result_image(match):
@@ -40,7 +49,7 @@ def tweet_result(match):
     )
 
     text = f"FT: {match['strHomeTeam']} {match['intHomeScore']} - {match['intAwayScore']} {match['strAwayTeam']}"
-
+    print("Tweeting:", text)
     image = create_result_image(match)
 
     api = tweepy.API(
@@ -56,20 +65,26 @@ def tweet_result(match):
 
     client.create_tweet(text=text, media_ids=[media.media_id])
 
-
 def main():
     print("BOT START")
-    
+
     for team in config.TEAMS:
 
         try:
             print("Checking team:", team)
-            match = get_last_match(team)
+
+            match = get_last_match(team)            
+            if not match:
+                continue
+
             print("Match data:", match)
+
             tweet_result(match)
 
-        except:
-            pass
+            print("Tweet sent")
+
+        except Exception as e:
+            print("ERROR:", e)
 
 
 if __name__ == "__main__":
