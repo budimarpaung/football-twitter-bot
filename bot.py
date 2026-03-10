@@ -1,3 +1,5 @@
+print("SCRIPT STARTED")
+
 import requests
 from PIL import Image, ImageDraw
 import tweepy
