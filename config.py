@@ -1,5 +1,5 @@
-# TheSportsDB API
-SPORTSDB_API = "https://www.thesportsdb.com/api/v1/json/3/"
+# SCOREBAT API
+SCOREBAT_API = "https://www.scorebat.com/video-api/v3/"
 
 # Twitter API
 API_KEY = "4a4aae98c7364807184b1aa057d0c455"
@@ -17,8 +17,8 @@ TEAMS = [
 "Real Madrid",
 "Barcelona",
 "Juventus",
-"Inter Milan",
+"Inter",
 "AC Milan",
 "Bayern Munich",
-"Paris Saint-Germain"
+"PSG"
 ]
